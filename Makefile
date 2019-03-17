@@ -8,4 +8,3 @@ build:
 
 package: build
 	zip -j main.zip main
-	mv main.zip terraform/
