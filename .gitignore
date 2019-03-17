@@ -1,0 +1,7 @@
+*.tfstate
+.terraform
+*.tfplan
+*.backup
+main
+test.json
+*.zip
