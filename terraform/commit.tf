@@ -1,11 +1,22 @@
+variable "s3_bucket" {
+  type = "string"
+}
+
+variable "s3_key" {
+  type = "string"
+}
+
+
 resource "aws_lambda_function" "classifier" {
   function_name = "classifier"
-  filename = "${pathexpand("./main.zip")}"
 
   handler = "main"
   runtime = "go1.x"
 
   role = "${aws_iam_role.resume_lambda_backend.arn}"
+
+  s3_bucket =  "${var.s3_bucket}"
+  s3_key = "${var.s3_key}"
 }
 
 resource "aws_api_gateway_resource" "commit" {
@@ -49,6 +60,6 @@ resource "aws_lambda_permission" "commit" {
 }
 
 output "base_url" {
-  url = "${aws_api_gateway_deployment.commit.invoke_url}"
+  value = "${aws_api_gateway_deployment.commit.invoke_url}"
 }
 
