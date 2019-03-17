@@ -50,12 +50,14 @@ func HandleRequest(req events.APIGatewayProxyRequest) (events.APIGatewayProxyRes
         t, _ := time.Parse(time.RFC3339, commit.Timestamp)
         newCommit := Commit{Url: commit.Url, Id: commit.Id, Timestamp: t.Unix(), Languages: map[string]int{} }
         for _, fileModified := range commit.Modified {
-            lang, _ := enry.GetLanguageByExtension(fileModified)
-            newCommit.Languages[lang] += 1
+            if lang, _ := enry.GetLanguageByExtension(fileModified); lang != "" {
+                newCommit.Languages[lang] += 1
+            }
         }
         for _, fileAdded := range commit.Added {
-            lang, _ := enry.GetLanguageByExtension(fileAdded)
-            newCommit.Languages[lang] += 1
+            if lang, _ := enry.GetLanguageByExtension(fileAdded); lang != "" {
+                newCommit.Languages[lang] += 1
+            }
         }
 
         commits = append(commits, newCommit)
