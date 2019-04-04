@@ -59,7 +59,4 @@ resource "aws_lambda_permission" "commit" {
   source_arn = "${aws_api_gateway_deployment.commit.execution_arn}/*/*"
 }
 
-output "base_url" {
-  value = "${aws_api_gateway_deployment.commit.invoke_url}"
-}
 
