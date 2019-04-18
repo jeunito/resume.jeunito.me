@@ -29,6 +29,14 @@ data "aws_iam_policy_document" "resume_backend" {
     ]
     resources = ["*"]
   }
+  statement {
+    actions = [
+      "s3:PutObject"
+    ]
+    resources = [
+      "arn:aws:s3:::${var.s3_bucket}/*"
+    ]
+  }
 }
 
 resource "aws_iam_role_policy" "resume_backend_policy" {
