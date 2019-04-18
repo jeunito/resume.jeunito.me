@@ -2,6 +2,10 @@ variable "s3_bucket" {
   type = "string"
 }
 
+variable "binary_bucket" {
+  type = "string"
+}
+
 variable "s3_key" {
   type = "string"
 }
@@ -15,7 +19,7 @@ resource "aws_lambda_function" "classifier" {
 
   role = "${aws_iam_role.resume_lambda_backend.arn}"
 
-  s3_bucket =  "${var.s3_bucket}"
+  s3_bucket =  "${var.binary_bucket}"
   s3_key = "${var.s3_key}"
 }
 
