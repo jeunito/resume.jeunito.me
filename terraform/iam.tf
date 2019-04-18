@@ -24,7 +24,8 @@ data "aws_iam_policy_document" "resume_backend" {
   }
   statement {
     actions = [
-      "dynamodb:PutItem"
+      "dynamodb:PutItem",
+      "dynamodb:Scan"
     ]
     resources = ["*"]
   }
