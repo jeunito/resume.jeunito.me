@@ -38,6 +38,7 @@ func HandleRequest() (string, error) {
         Bucket: aws.String(bucket),
         Key: aws.String("index.html"),
         Body: strings.NewReader(b.String()),
+        ContentType: aws.String("text/html"),
     })
 
     if err != nil {
