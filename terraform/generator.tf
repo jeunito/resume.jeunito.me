@@ -19,3 +19,9 @@ resource "aws_lambda_function" "generator" {
     }
   }
 }
+
+resource "aws_lambda_event_source_mapping" "generator" {
+  event_source_arn = "${aws_dynamodb_table.commits.stream_arn}"
+  function_name = "${aws_lambda_function.generator.arn}"
+  starting_position = "LATEST"
+}

@@ -25,7 +25,11 @@ data "aws_iam_policy_document" "resume_backend" {
   statement {
     actions = [
       "dynamodb:PutItem",
-      "dynamodb:Scan"
+      "dynamodb:Scan",
+      "dynamodb:DescribeStream",
+      "dynamodb:GetRecords",
+      "dynamodb:GetShardIterator",
+      "dynamodb:ListStreams"
     ]
     resources = ["*"]
   }

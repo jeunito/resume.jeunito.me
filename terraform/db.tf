@@ -13,4 +13,7 @@ resource "aws_dynamodb_table" "commits" {
     name = "Timestamp"
     type = "N"
   }
+
+  stream_enabled = "true"
+  stream_view_type = "KEYS_ONLY"
 }
